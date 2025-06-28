@@ -1,2 +1,12 @@
-# Algorithms-MapRouting
-Problem Definition The goal is to implement the classic Dijkstra's shortest path algorithm and optimize it for maps. Your goal is to reduce the amount of work involved per shortest path computation, without using excessive space. IDEA IMPLEMENTER FOR OPTIMIZATION IS: The naive implementation of Dijkstra's algorithm examines all V vertices in the graph. An obvious strategy to reduce the number of vertices examined is to stop the search as soon as you discover the shortest path to the destination. With this approach, you can make the running time per shortest path query proportional to E' log V' where E' and V' are the number of edges and vertices examined by Dijkstra's algorithm. However, this requires some care because just re-initializing all of the distances to ∞ would take time proportional to V. Since you are doing repeated queries, you can speed things up dramatically by only re-initializing those values that changed in the previous query.
+# Algorithm-Map-Routing
+Project Title: Optimizing Dijkstra’s Algorithm for Efficient Map-Based Shortest Path Computation
+
+Problem Definition:
+The objective of this project is to implement the classic Dijkstra’s shortest path algorithm and enhance its performance specifically for map-based applications. The focus is on reducing the computational overhead of each shortest path query while maintaining a balanced memory footprint.
+
+Optimization Strategy:
+In a standard implementation, Dijkstra’s algorithm explores all 𝑉 vertices, which can be computationally expensive for large-scale maps. A key optimization involves terminating the algorithm early—specifically, halting the search immediately upon discovering the shortest path to the target node. This early exit strategy significantly limits the search space, reducing the effective number of vertices (𝑉') and edges (𝐸′) explored during computation.
+
+As a result, the runtime per query becomes proportional to 𝐸′ log 𝑉′ , rather than the full graph size. However, this approach introduces new challenges in managing state between queries. Reinitializing the distance and visited arrays to default values (e.g., ∞) in every query would still incur a time cost of 𝑂 (𝑉), which negates some of the optimization benefits.
+
+To address this, the project implements a selective reinitialization technique. Instead of resetting the entire state, only those nodes that were modified during the previous query are updated. This results in substantial time savings for repeated queries and enhances the algorithm’s suitability for dynamic, real-time map-based applications.
